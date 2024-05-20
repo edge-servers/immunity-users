@@ -1,5 +1,5 @@
-from openwisp_users import admin
-from openwisp_users.utils import (
+from immunity_users import admin
+from immunity_users.utils import (
     usermodel_add_form,
     usermodel_change_form,
     usermodel_list_and_search,

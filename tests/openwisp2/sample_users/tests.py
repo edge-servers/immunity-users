@@ -1,26 +1,26 @@
-from openwisp_users.tests.test_accounts import TestAccountView as BaseTestAccountView
-from openwisp_users.tests.test_admin import (
+from immunity_users.tests.test_accounts import TestAccountView as BaseTestAccountView
+from immunity_users.tests.test_admin import (
     TestBasicUsersIntegration as BaseTestBasicUsersIntegration,
 )
-from openwisp_users.tests.test_admin import (
+from immunity_users.tests.test_admin import (
     TestMultitenantAdmin as BaseTestMultitenantAdmin,
 )
-from openwisp_users.tests.test_admin import (
+from immunity_users.tests.test_admin import (
     TestUserPasswordExpiration as BaseTestUserPasswordExpiration,
 )
-from openwisp_users.tests.test_admin import TestUsersAdmin as BaseTestUsersAdmin
-from openwisp_users.tests.test_api.test_api import TestUsersApi as BaseTestUsersApi
-from openwisp_users.tests.test_api.test_authentication import (
+from immunity_users.tests.test_admin import TestUsersAdmin as BaseTestUsersAdmin
+from immunity_users.tests.test_api.test_api import TestUsersApi as BaseTestUsersApi
+from immunity_users.tests.test_api.test_authentication import (
     AuthenticationTests as BaseAuthenticationTests,
 )
-from openwisp_users.tests.test_api.test_throttling import (
+from immunity_users.tests.test_api.test_throttling import (
     RatelimitTests as BaseRatelimitTests,
 )
-from openwisp_users.tests.test_api.test_views import (
+from immunity_users.tests.test_api.test_views import (
     TestRestFrameworkViews as BaseTestRestFrameworkViews,
 )
-from openwisp_users.tests.test_backends import TestBackends as BaseTestBackends
-from openwisp_users.tests.test_models import TestUsers as BaseTestUsers
+from immunity_users.tests.test_backends import TestBackends as BaseTestBackends
+from immunity_users.tests.test_models import TestUsers as BaseTestUsers
 
 additional_fields = [
     ('social_security_number', '123-45-6789'),
@@ -38,7 +38,7 @@ class GetEditFormInlineMixin(object):
     def _get_org_edit_form_inline_params(self, user, organization):
         """
         This function is created to be overridden
-        when the user extends openwisp-users
+        when the user extends immunity-users
         and adds inline forms in the Organization model.
         """
         params = super()._get_user_edit_form_inline_params(user, organization)
@@ -57,7 +57,7 @@ class GetEditFormInlineMixin(object):
     def _get_user_edit_form_inline_params(self, user, organization):
         """
         This function is created to be overridden
-        when the user extends openwisp-users
+        when the user extends immunity-users
         and adds inline forms in the User model.
         """
         params = super()._get_user_edit_form_inline_params(user, organization)

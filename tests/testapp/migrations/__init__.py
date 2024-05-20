@@ -6,7 +6,7 @@ from django.db.models import Q
 
 
 def update_administrator_permissions(apps, schema_editor):
-    model_name = swapper.get_model_name('openwisp_users', 'Group')
+    model_name = swapper.get_model_name('immunity_users', 'Group')
     model_label = swapper.split(model_name)[0]
     Group = apps.get_model(model_label, 'Group')
 

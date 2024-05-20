@@ -12,7 +12,7 @@ import phonenumber_field.modelfields
 from django.conf import settings
 from django.db import migrations, models
 
-import openwisp_users.base.models
+import immunity_users.base.models
 
 
 class Migration(migrations.Migration):
@@ -203,7 +203,7 @@ class Migration(migrations.Migration):
                 'index_together': {('id', 'email')},
             },
             managers=[
-                ('objects', openwisp_users.base.models.UserManager()),
+                ('objects', immunity_users.base.models.UserManager()),
             ],
         ),
         migrations.CreateModel(
@@ -225,7 +225,7 @@ class Migration(migrations.Migration):
             options={
                 'abstract': False,
             },
-            bases=(openwisp_users.base.models.BaseGroup, 'auth.group', models.Model),
+            bases=(immunity_users.base.models.BaseGroup, 'auth.group', models.Model),
             managers=[
                 ('objects', django.contrib.auth.models.GroupManager()),
             ],

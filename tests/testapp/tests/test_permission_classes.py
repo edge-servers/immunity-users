@@ -4,14 +4,14 @@ from django.test import TestCase
 from django.urls import reverse
 from swapper import load_model
 
-from openwisp_users.api.throttling import AuthRateThrottle
+from immunity_users.api.throttling import AuthRateThrottle
 
 from ..models import Template
 from .mixins import TestMultitenancyMixin
 
 User = get_user_model()
-Group = load_model('openwisp_users', 'Group')
-OrganizationUser = load_model('openwisp_users', 'OrganizationUser')
+Group = load_model('immunity_users', 'Group')
+OrganizationUser = load_model('immunity_users', 'OrganizationUser')
 
 
 class TestPermissionClasses(TestMultitenancyMixin, TestCase):

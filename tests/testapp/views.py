@@ -8,13 +8,13 @@ from rest_framework.generics import (
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from openwisp_users.api.authentication import BearerAuthentication
-from openwisp_users.api.filters import (
+from immunity_users.api.authentication import BearerAuthentication
+from immunity_users.api.filters import (
     OrganizationManagedFilter,
     OrganizationMembershipFilter,
     OrganizationOwnedFilter,
 )
-from openwisp_users.api.mixins import (
+from immunity_users.api.mixins import (
     FilterByOrganizationManaged,
     FilterByOrganizationMembership,
     FilterByOrganizationOwned,
@@ -23,7 +23,7 @@ from openwisp_users.api.mixins import (
     FilterByParentOwned,
     FilterDjangoByOrgManaged,
 )
-from openwisp_users.api.permissions import (
+from immunity_users.api.permissions import (
     BaseOrganizationPermission,
     DjangoModelPermissions,
     IsOrganizationManager,
@@ -44,7 +44,7 @@ from .serializers import (
     TemplateSerializer,
 )
 
-Organization = swapper.load_model('openwisp_users', 'Organization')
+Organization = swapper.load_model('immunity_users', 'Organization')
 
 
 class BookOrgMixin:

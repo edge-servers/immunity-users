@@ -1,16 +1,16 @@
-from openwisp_users.api.views import ChangePasswordView as BaseChangePasswordView
-from openwisp_users.api.views import EmailUpdateView as BaseEmailUpdateView
-from openwisp_users.api.views import GroupDetailView as BaseGroupDetailView
-from openwisp_users.api.views import GroupListCreateView as BaseGroupListCreateView
-from openwisp_users.api.views import ObtainAuthTokenView as BaseObtainAuthTokenView
-from openwisp_users.api.views import (
+from immunity_users.api.views import ChangePasswordView as BaseChangePasswordView
+from immunity_users.api.views import EmailUpdateView as BaseEmailUpdateView
+from immunity_users.api.views import GroupDetailView as BaseGroupDetailView
+from immunity_users.api.views import GroupListCreateView as BaseGroupListCreateView
+from immunity_users.api.views import ObtainAuthTokenView as BaseObtainAuthTokenView
+from immunity_users.api.views import (
     OrganizationDetailView as BaseOrganizationDetailView,
 )
-from openwisp_users.api.views import (
+from immunity_users.api.views import (
     OrganizationListCreateView as BaseOrganizationListCreateView,
 )
-from openwisp_users.api.views import UserDetailView as BaseUserDetailView
-from openwisp_users.api.views import UsersListCreateView as BaseUsersListCreateView
+from immunity_users.api.views import UserDetailView as BaseUserDetailView
+from immunity_users.api.views import UsersListCreateView as BaseUsersListCreateView
 
 
 class ObtainAuthTokenView(BaseObtainAuthTokenView):

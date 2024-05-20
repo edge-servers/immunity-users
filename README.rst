@@ -1,21 +1,21 @@
-openwisp-users
+immunity-users
 ==============
 
-.. image:: https://github.com/openwisp/openwisp-users/workflows/OpenWISP%20Users%20CI%20Build/badge.svg?branch=master
-   :target: https://github.com/openwisp/openwisp-users/actions?query=workflow%3A%22OpenWISP+Users+CI+Build%22
+.. image:: https://github.com/edge-servers/immunity-users/workflows/Immunity%20Users%20CI%20Build/badge.svg?branch=master
+   :target: https://github.com/edge-servers/immunity-users/actions?query=workflow%3A%22Immunity+Users+CI+Build%22
 
-.. image:: https://coveralls.io/repos/openwisp/openwisp-users/badge.svg
-  :target: https://coveralls.io/r/openwisp/openwisp-users
+.. image:: https://coveralls.io/repos/immunity/immunity-users/badge.svg
+  :target: https://coveralls.io/r/immunity/immunity-users
 
-.. image:: https://img.shields.io/librariesio/release/github/openwisp/openwisp-users
-  :target: https://libraries.io/github/openwisp/openwisp-users#repository_dependencies
+.. image:: https://img.shields.io/librariesio/release/github/immunity/immunity-users
+  :target: https://libraries.io/github/immunity/immunity-users#repository_dependencies
   :alt: Dependency monitoring
 
-.. image:: https://badge.fury.io/py/openwisp-users.svg
-   :target: http://badge.fury.io/py/openwisp-users
+.. image:: https://badge.fury.io/py/immunity-users.svg
+   :target: http://badge.fury.io/py/immunity-users
 
-.. image:: https://pepy.tech/badge/openwisp-users
-   :target: https://pepy.tech/project/openwisp-users
+.. image:: https://pepy.tech/badge/immunity-users
+   :target: https://pepy.tech/project/immunity-users
    :alt: downloads
 
 .. image:: https://img.shields.io/badge/code%20style-black-000000.svg
@@ -24,13 +24,13 @@ openwisp-users
 
 ------------
 
-Implementation of user management and multi-tenancy for OpenWISP (built with python & django).
+Implementation of user management and multi-tenancy for Immunity (built with python & django).
 
 **Need a quick overview?**
-`Try the OpenWISP Demo <https://openwisp.org/demo.html>`_.
+`Try the Immunity Demo <https://immunity.org/demo.html>`_.
 
-.. image:: https://raw.githubusercontent.com/openwisp/openwisp2-docs/master/assets/design/openwisp-logo-black.svg
-  :target: http://openwisp.org
+.. image:: https://raw.githubusercontent.com/immunity/immunity2-docs/master/assets/design/immunity-logo-black.svg
+  :target: http://immunity.org
 
 ------------
 
@@ -43,8 +43,8 @@ Implementation of user management and multi-tenancy for OpenWISP (built with pyt
 Deploy it in production
 -----------------------
 
-An automated installer is available at `ansible-openwisp2
-<https://github.com/openwisp/ansible-openwisp2>`_.
+An automated installer is available at `ansible-immunity2
+<https://github.com/edge-servers/ansible-immunity2>`_.
 
 Install stable version from pypi
 --------------------------------
@@ -53,7 +53,7 @@ Install from pypi:
 
 .. code-block:: shell
 
-    pip install openwisp-users
+    pip install immunity-users
 
 Install development version
 ---------------------------
@@ -62,13 +62,13 @@ Install tarball:
 
 .. code-block:: shell
 
-    pip install https://github.com/openwisp/openwisp-users/tarball/master
+    pip install https://github.com/edge-servers/immunity-users/tarball/master
 
 Alternatively you can install via pip using git:
 
 .. code-block:: shell
 
-    pip install -e git+git://github.com/openwisp/openwisp-users#egg=openwisp_users
+    pip install -e git+git://github.com/immunity/immunity-users#egg=immunity_users
 
 
 Setup (integrate in an existing django project)
@@ -84,9 +84,9 @@ Setup (integrate in an existing django project)
         'django.contrib.sessions',
         'django.contrib.messages',
         'django.contrib.staticfiles',
-        'openwisp_utils.admin_theme',
+        'immunity_utils.admin_theme',
         # overrides some templates in django-allauth
-        'openwisp_users.accounts',
+        'immunity_users.accounts',
         'django_extensions',
         'allauth',
         'allauth.account',
@@ -95,7 +95,7 @@ Setup (integrate in an existing django project)
         'rest_framework.authtoken',
         # must come before the django admin
         # to override the admin login page
-        'openwisp_users',
+        'immunity_users',
         'django.contrib.admin',
         'admin_auto_filters',
         'django.contrib.sites',
@@ -107,14 +107,14 @@ to your ``settings.py``:
 
 .. code-block:: python
 
-    AUTH_USER_MODEL = 'openwisp_users.User'
+    AUTH_USER_MODEL = 'immunity_users.User'
     SITE_ID = 1
     AUTHENTICATION_BACKENDS = [
-        'openwisp_users.backends.UsersAuthenticationBackend',
+        'immunity_users.backends.UsersAuthenticationBackend',
     ]
     MIDDLEWARE = [
         # Other middlewares
-        'openwisp_users.middleware.PasswordExpirationMiddleware',
+        'immunity_users.middleware.PasswordExpirationMiddleware',
     ]
 
 Configure celery (you may use a different broker if you want):
@@ -126,7 +126,7 @@ Configure celery (you may use a different broker if you want):
     CELERY_BROKER_URL = 'redis://localhost/1'
     CELERY_BEAT_SCHEDULE = {
         'password_expiry_email': {
-            'task': 'openwisp_users.tasks.password_expiration_email',
+            'task': 'immunity_users.tasks.password_expiration_email',
             'schedule': crontab(hour=1, minute=0),
         },
     }
@@ -149,7 +149,7 @@ install the following python packages.
     urlpatterns = [
         url(r'^admin/', include(admin.site.urls)),
         url(r'^accounts/', include('allauth.urls')),
-        url(r'^api/v1/', include('openwisp_users.api.urls')),
+        url(r'^api/v1/', include('immunity_users.api.urls')),
     ]
 
     urlpatterns += staticfiles_urlpatterns()
@@ -179,8 +179,8 @@ Install your forked repo:
 
 .. code-block:: shell
 
-    git clone git://github.com/<your_fork>/openwisp-users
-    cd openwisp-users/
+    git clone git://github.com/<your_fork>/immunity-users
+    cd immunity-users/
     pip install -e .[rest]
 
 Install test requirements:
@@ -209,8 +209,8 @@ Run celery and celery-beat with the following commands (separate terminal window
 .. code-block:: shell
 
     cd tests/
-    celery -A openwisp2 worker -l info
-    celery -A openwisp2 beat -l info
+    celery -A immunity2 worker -l info
+    celery -A immunity2 beat -l info
 
 Launch development server:
 
@@ -294,7 +294,7 @@ check Django-rest-framework
 +--------------+--------------+
 
 A tuple or list of international prefixes which will be automatically
-tested by `the authentication backend of openwisp-users <#authentication-backend>`_
+tested by `the authentication backend of immunity-users <#authentication-backend>`_
 when parsing phone numbers.
 
 Each prefix will be prepended to the username string automatically and
@@ -364,14 +364,14 @@ required to change their passwords.
 | **default**: | ``0``       |
 +--------------+-------------+
 
-Similar to `OPENWISP_USERS_USER_PASSWORD_EXPIRATION <#openwisp-users-user-password-expiration>`_,
+Similar to `OPENWISP_USERS_USER_PASSWORD_EXPIRATION <#immunity-users-user-password-expiration>`_,
 but for **staff users**.
 
 REST API
 --------
 
 To enable the API the setting
-`OPENWISP_USERS_AUTH_API <#openwisp-users-auth-api>`_
+`OPENWISP_USERS_AUTH_API <#immunity-users-auth-api>`_
 must be set to ``True``.
 
 Live documentation
@@ -382,7 +382,7 @@ A general live API documentation (following the OpenAPI specification) at ``/api
 Browsable web interface
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-.. image:: https://github.com/openwisp/openwisp-users/raw/docs/docs/images/api-ui.png
+.. image:: https://github.com/edge-servers/immunity-users/raw/docs/docs/images/api-ui.png
 
 Additionally, opening any of the endpoints listed below
 directly in the browser will show the `browsable API interface of Django-REST-Framework
@@ -403,7 +403,7 @@ Example usage of the endpoint:
 
 .. code-block:: shell
 
-    http POST localhost:8000/api/v1/users/token/ username=openwisp password=1234
+    http POST localhost:8000/api/v1/users/token/ username=immunity password=1234
 
     HTTP/1.1 200 OK
     Allow: POST, OPTIONS
@@ -422,8 +422,8 @@ Example usage of the endpoint:
 Authenticating with the user token
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The authentication class ``openwisp_users.api.authentication.BearerAuthentication``
-is used across the different OpenWISP modules for authentication.
+The authentication class ``immunity_users.api.authentication.BearerAuthentication``
+is used across the different Immunity modules for authentication.
 
 To use it, first of all get the user token as described above in
 `Obtain Authentication Token <#obtain-authentication-token>`_, then send
@@ -432,7 +432,7 @@ the token in the ``Authorization`` header:
 .. code-block:: shell
 
     # get token
-    TOKEN=$(http POST :8000/api/v1/users/token/ username=openwisp password=1234 | jq -r .token)
+    TOKEN=$(http POST :8000/api/v1/users/token/ username=immunity password=1234 | jq -r .token)
 
     # send bearer token
     http GET localhost:8000/api/v1/firmware-upgrader/build/ "Authorization: Bearer $TOKEN"
@@ -657,8 +657,8 @@ Here's a summary of the default permissions:
   to change objects via the django admin for that organization,
   they can only consume API endpoints,
   a real world example of this are the
-  `User API endpoints of OpenWISP RADIUS
-  <https://openwisp-radius.readthedocs.io/en/stable/user/api.html#user-api-endpoints>`_
+  `User API endpoints of Immunity RADIUS
+  <https://immunity-radius.readthedocs.io/en/stable/user/api.html#user-api-endpoints>`_
   which allow users to sign up to an organization, verify their phone number
   by receiving a verification code via SMS, see their RADIUS sessions, etc.
   All those endpoints are tied to an organization because different organizations
@@ -693,8 +693,8 @@ many database queries.
 
     import swapper
 
-    User = swapper.load_model('openwisp_users', 'User')
-    Organization = swapper.load_model('openwisp_users', 'Organization')
+    User = swapper.load_model('immunity_users', 'User')
+    Organization = swapper.load_model('immunity_users', 'Organization')
 
     user = User.objects.first()
     org = Organization.objects.first()
@@ -803,7 +803,7 @@ Usage example:
 Authentication Backend
 ----------------------
 
-The authentication backend in ``openwisp_users.backends.UsersAuthenticationBackend``
+The authentication backend in ``immunity_users.backends.UsersAuthenticationBackend``
 allows users to authenticate using their
 ``email`` or ``phone_number`` instead of their ``username``.
 Authenticating with the ``username`` is still allowed,
@@ -818,7 +818,7 @@ will be recognized anyway.
 
 When parsing phone numbers, the
 `OPENWISP_USERS_AUTH_BACKEND_AUTO_PREFIXES
-<#openwisp_users_auth_backend_auto_prefixes>`_
+<#immunity_users_auth_backend_auto_prefixes>`_
 setting allows to specify a list of international prefixes that can
 be prepended to the username string automatically in order to allow
 users to log in without having to type the international prefix.
@@ -827,7 +827,7 @@ The authentication backend can also be used as follows:
 
 .. code-block:: python
 
-    from openwisp_users.backends import UsersAuthenticationBackend
+    from immunity_users.backends import UsersAuthenticationBackend
 
     backend = UsersAuthenticationBackend()
     backend.authenticate(request, identifier, password)
@@ -835,7 +835,7 @@ The authentication backend can also be used as follows:
 Password Validators
 -------------------
 
-``openwisp_users.password_validation.PasswordReuseValidator``
+``immunity_users.password_validation.PasswordReuseValidator``
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 On password change views, the ``PasswordReuseValidator``
@@ -850,19 +850,19 @@ setting as shown below:
     AUTH_PASSWORD_VALIDATORS = [
         # Other password validators
         {
-            "NAME": "openwisp_users.password_validation.PasswordReuseValidator",
+            "NAME": "immunity_users.password_validation.PasswordReuseValidator",
         },
     ]
 
 Middlewares
 -----------
 
-``openwisp_users.middleware.PasswordExpirationMiddleware``
+``immunity_users.middleware.PasswordExpirationMiddleware``
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 When password expiration feature is on
-(see `OPENWISP_USERS_USER_PASSWORD_EXPIRATION <#openwisp-users-user-password-expiration>`_
-and `OPENWISP_USERS_STAFF_USER_PASSWORD_EXPIRATION <#openwisp-users-staff-user-password-expiration>`_),
+(see `OPENWISP_USERS_USER_PASSWORD_EXPIRATION <#immunity-users-user-password-expiration>`_
+and `OPENWISP_USERS_STAFF_USER_PASSWORD_EXPIRATION <#immunity-users-staff-user-password-expiration>`_),
 this middleware confines the user to the *password change view* until they change their password.
 
 This middleware should come after ``AuthenticationMiddleware`` and ``MessageMiddleware``, as following:
@@ -874,24 +874,24 @@ This middleware should come after ``AuthenticationMiddleware`` and ``MessageMidd
         # Other middlewares
         'django.contrib.auth.middleware.AuthenticationMiddleware',
         'django.contrib.messages.middleware.MessageMiddleware',
-        'openwisp_users.middleware.PasswordExpirationMiddleware',
+        'immunity_users.middleware.PasswordExpirationMiddleware',
     ]
 
 Django REST Framework Authentication Classes
 --------------------------------------------
 
-1. ``openwisp_users.api.authentication.BearerAuthentication``
+1. ``immunity_users.api.authentication.BearerAuthentication``
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Based on the `rest_framework.authentication.TokenAuthentication
 <https://www.django-rest-framework.org/api-guide/authentication/#tokenauthentication>`_,
 ``BearerAuthentication`` is the primary authentication class for REST APIs
-implemented across all modules of OpenWISP.
+implemented across all modules of Immunity.
 
 Kindly refer to `authenticating with the user token <#authenticating-with-the-user-token>`_
 section for usage information.
 
-2. ``openwisp_users.api.authentication.SesameAuthentication``
+2. ``immunity_users.api.authentication.SesameAuthentication``
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 It provides authentication to a REST view using tokens generated by
@@ -916,7 +916,7 @@ organization member, manager or owner respectively. Usage example:
 
 .. code-block:: python
 
-    from openwisp_users.api.permissions import IsOrganizationManager
+    from immunity_users.api.permissions import IsOrganizationManager
     from rest_framework import generics
 
     class MyApiView(generics.APIView):
@@ -936,8 +936,8 @@ find the organization of the current object.
 In most cases this won't need to be changed, but it does need to
 be changed when the ``organization`` is defined only on a parent object.
 
-For example, in `openwisp-firmware-upgrader
-<https://github.com/openwisp/openwisp-firmware-upgrader>`_,
+For example, in `immunity-firmware-upgrader
+<https://github.com/edge-servers/immunity-firmware-upgrader>`_,
 ``organization`` is defined on ``Category`` and ``Build`` has a relation
 to ``category``, so the organization of Build instances is inferred from
 the organization of the Category.
@@ -946,7 +946,7 @@ Therefore, to implement the permission class correctly, we would have to do:
 
 .. code-block:: python
 
-    from openwisp_users.api.permissions import IsOrganizationManager
+    from immunity_users.api.permissions import IsOrganizationManager
     from rest_framework import generics
 
     class MyApiView(generics.APIView):
@@ -972,7 +972,7 @@ Usage example:
 
 .. code-block:: python
 
-    from openwisp_users.api.permissions import DjangoModelPermissions
+    from immunity_users.api.permissions import DjangoModelPermissions
     from rest_framework.generics import ListCreateAPIView
 
     class TemplateListCreateView(ListCreateAPIView):
@@ -1013,7 +1013,7 @@ Usage example:
 
 .. code-block:: python
 
-    from openwisp_users.api.mixins import FilterByOrganizationManaged
+    from immunity_users.api.mixins import FilterByOrganizationManaged
     from rest_framework import generics
 
     class UsersListView(FilterByOrganizationManaged, generics.ListAPIView):
@@ -1048,7 +1048,7 @@ has access to it, here's how to do it:
 
     import swapper
     from rest_framework import generics
-    from openwisp_users.api.mixins import FilterByParentManaged
+    from immunity_users.api.mixins import FilterByParentManaged
 
     Device = swapper.load_model('config', 'Device')
     Config = swapper.load_model('config', 'Config')
@@ -1083,7 +1083,7 @@ Usage example:
 
 .. code-block:: python
 
-    from openwisp_users.api.mixins import FilterSerializerByOrgOwned
+    from immunity_users.api.mixins import FilterSerializerByOrgOwned
     from rest_framework.serializers import ModelSerializer
     from .models import Device
 
@@ -1097,14 +1097,14 @@ objects in the accepted values of the multi-tenant serializers.
 
 Shared objects have the ``organization`` field set to ``None`` and can
 be used by any organization. A common use case is `shared templates
-in OpenWISP Controller
-<https://openwisp.io/docs/user/templates.html#shared-templates-vs-organization-specific>`_.
+in Immunity Controller
+<https://immunity.io/docs/user/templates.html#shared-templates-vs-organization-specific>`_.
 
 Usage example:
 
 .. code-block:: python
 
-    from openwisp_users.api.mixins import FilterSerializerByOrgOwned
+    from immunity_users.api.mixins import FilterSerializerByOrgOwned
     from rest_framework.serializers import ModelSerializer
     from .models import Book
 
@@ -1120,7 +1120,7 @@ To filter items based on the ``organization`` of their parent object,
 which is inheriting any of the mixin classes.
 
 Usage example: `organization_field
-<https://github.com/openwisp/openwisp-users#organization_field>`_.
+<https://github.com/edge-servers/immunity-users#organization_field>`_.
 
 Multi-tenant filters capabilities for the browsable web UI
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -1141,7 +1141,7 @@ Usage example:
 .. code-block:: python
 
    from django_filters import rest_framework as filters
-   from openwisp_users.api.mixins import FilterDjangoByOrgManaged
+   from immunity_users.api.mixins import FilterDjangoByOrgManaged
    from ..models import FloorPlan
 
 
@@ -1161,7 +1161,7 @@ Usage example:
        filterset_class = FloorPlanOrganizationFilter
 
 You can also use the organization filter classes
-such as ``OrganizationManagedFilter`` from ``openwisp_users.api.filters``
+such as ``OrganizationManagedFilter`` from ``immunity_users.api.filters``
 which includes ``organization`` and ``organization_slug`` filter fields by default.
 
 Usage example:
@@ -1169,7 +1169,7 @@ Usage example:
 .. code-block:: python
 
    from django_filters import rest_framework as filters
-   from openwisp_users.api.filters import OrganizationManagedFilter
+   from immunity_users.api.filters import OrganizationManagedFilter
    from ..models import FloorPlan
 
 
@@ -1201,15 +1201,15 @@ Admin Multitenancy mixins
     you want the admin to only show the relations the user can manage,
     the way to do that is to list those model attributes here as a list
     of strings.
-    See `how it is used in OpenWISP Controller
-    <https://github.com/openwisp/openwisp-controller/search?q=multitenant_shared_relations>`_
+    See `how it is used in Immunity Controller
+    <https://github.com/edge-servers/immunity-controller/search?q=multitenant_shared_relations>`_
     for a real world example.
   * ``multitenant_parent``: if the admin model does not have an
     ``organization`` field, but instead relies on a parent model
     which has the field, then you can specify here the field which
     points to the parent.
-    See `how it is used in OpenWISP Firmware Upgrader
-    <https://github.com/openwisp/openwisp-firmware-upgrader/search?q=multitenant_parent>`_
+    See `how it is used in Immunity Firmware Upgrader
+    <https://github.com/edge-servers/immunity-firmware-upgrader/search?q=multitenant_parent>`_
     for a real world example.
 
 * **MultitenantOrgFilter**: an autocomplete admin filter that shows only organizations
@@ -1219,7 +1219,7 @@ Admin Multitenancy mixins
 .. code-block:: python
 
     from django.contrib import admin
-    from openwisp_users.multitenancy import MultitenantOrgFilter
+    from immunity_users.multitenancy import MultitenantOrgFilter
 
     class BookAdmin(admin.ModelAdmin):
         list_filter = [
@@ -1232,18 +1232,18 @@ Admin Multitenancy mixins
   the current user can manage, this shall be used for creating filters
   for related multitenant models.
 
-  Consider the following example of `IpAddressAdmin from openwisp-ipam <https://github.com/openwisp/openwisp-ipam/blob/956d9d25fc1ac339cb148ec7faf80046cc14be37/openwisp_ipam/admin.py#L216-L227>`_ .
+  Consider the following example of `IpAddressAdmin from immunity-ipam <https://github.com/edge-servers/immunity-ipam/blob/956d9d25fc1ac339cb148ec7faf80046cc14be37/immunity_ipam/admin.py#L216-L227>`_ .
   ``IpAddressAdmin`` allows filtering
-  `IpAddress <https://github.com/openwisp/openwisp-ipam/blob/956d9d25fc1ac339cb148ec7faf80046cc14be37/openwisp_ipam/base/models.py#L276-L281>`_
+  `IpAddress <https://github.com/edge-servers/immunity-ipam/blob/956d9d25fc1ac339cb148ec7faf80046cc14be37/immunity_ipam/base/models.py#L276-L281>`_
   objects by ``Subnet`` that belongs to organizations managed by the user.
 
 .. code-block:: python
 
     from django.contrib import admin
-    from openwisp_users.multitenancy import MultitenantRelatedOrgFilter
+    from immunity_users.multitenancy import MultitenantRelatedOrgFilter
     from swapper import load_model
 
-    Subnet = load_model('openwisp_ipam', 'Subnet')
+    Subnet = load_model('immunity_ipam', 'Subnet')
 
 
     class SubnetFilter(MultitenantRelatedOrgFilter):
@@ -1270,7 +1270,7 @@ This command exports user data to a CSV file, including related data such as org
 **Arguments**:
 
 - `--exclude-fields`: Optional, comma-separated list of fields to exclude from the export.
-- `--filename`: Optional, filename for the exported CSV, defaults to "openwisp_exported_users.csv".
+- `--filename`: Optional, filename for the exported CSV, defaults to "immunity_exported_users.csv".
 
 Example usage:
 
@@ -1279,21 +1279,21 @@ Example usage:
     ./manage.py export_users --exclude-fields birth_date,location --filename users.csv
 
 For advance customizations (e.g. adding fields for export), you can use the
-`OPENWISP_USERS_EXPORT_USERS_COMMAND_CONFIG <#openwisp_users_export_users_command_config>`_
+`OPENWISP_USERS_EXPORT_USERS_COMMAND_CONFIG <#immunity_users_export_users_command_config>`_
 setting.
 
 ProtectedAPIMixin
 ~~~~~~~~~~~~~~~~~
 
 This mixin provides a set of authentication and permission classes
-that are used across various OpenWISP modules API views.
+that are used across various Immunity modules API views.
 
 Usage example:
 
 .. code-block:: python
 
-    # Used in openwisp-ipam
-    from openwisp_users.api.mixins import ProtectedAPIMixin as BaseProtectedAPIMixin
+    # Used in immunity-ipam
+    from immunity_users.api.mixins import ProtectedAPIMixin as BaseProtectedAPIMixin
 
     class ProtectedAPIMixin(BaseProtectedAPIMixin):
         throttle_scope = 'ipam'
@@ -1302,29 +1302,29 @@ Usage example:
         serializer_class = SubnetSerializer
         queryset = Subnet.objects.all()
 
-Extend openwisp-users
+Extend immunity-users
 ---------------------
 
-One of the core values of the OpenWISP project is
+One of the core values of the Immunity project is
 `Software Reusability
-<http://openwisp.io/docs/general/values.html#software-reusability-means-long-term-sustainability>`_,
-for this reason *openwisp-users* provides a set of base classes
+<http://immunity.io/docs/general/values.html#software-reusability-means-long-term-sustainability>`_,
+for this reason *immunity-users* provides a set of base classes
 which can be imported, extended and reused to create derivative apps.
 
 This will be extreme beneficial for you if you want to create additional
 fields for User model, example asking for Social Security Number of the
 User for registeration.
 
-In order to implement your custom version of *openwisp-users*,
+In order to implement your custom version of *immunity-users*,
 you need to perform the steps described in this section.
 
 When in doubt, the code in the `test project
-<https://github.com/openwisp/openwisp-users/tree/master/tests/openwisp2/>`_
+<https://github.com/edge-servers/immunity-users/tree/master/tests/immunity2/>`_
 and the `sample app
-<https://github.com/openwisp/openwisp-users/tree/master/tests/openwisp2/sample_users/>`_
+<https://github.com/edge-servers/immunity-users/tree/master/tests/immunity2/sample_users/>`_
 will serve you as source of truth:
 just replicate and adapt that code to get a basic derivative of
-*openwisp-users* working.
+*immunity-users* working.
 
 **Premise**: if you plan on using a customized version of this module,
 we suggest to start with it since the beginning, because migrating your data
@@ -1334,7 +1334,7 @@ from the default module to your extended version may be time consuming.
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The first thing you need to do is to create a new django app which will
-contain your custom version of *openwisp-users*.
+contain your custom version of *immunity-users*.
 
 A django app is nothing more than a
 `python package <https://docs.python.org/3/tutorial/modules.html#packages>`_
@@ -1349,26 +1349,26 @@ which is available in your `PYTHON_PATH
 so that you can then import the result into your project.
 
 Now you need to add ``myusers`` to ``INSTALLED_APPS`` in your ``settings.py``,
-ensuring also that ``openwisp_users`` has been removed:
+ensuring also that ``immunity_users`` has been removed:
 
 .. code-block:: python
 
     INSTALLED_APPS = [
         # ... other apps ...
 
-        # 'openwisp_users'  <-- comment out or delete this line
+        # 'immunity_users'  <-- comment out or delete this line
         'myusers'
     ]
 
 For more information about how to work with django projects and django apps, please refer
 to the `django documentation <https://docs.djangoproject.com/en/dev/intro/tutorial01/>`_.
 
-2. Install ``openwisp-users``
+2. Install ``immunity-users``
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Install (and add to the requirement of your project) openwisp-users::
+Install (and add to the requirement of your project) immunity-users::
 
-    pip install openwisp-users
+    pip install immunity-users
 
 3. Add ``EXTENDED_APPS``
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -1377,13 +1377,13 @@ Add the following to your ``settings.py``:
 
 .. code-block:: python
 
-    EXTENDED_APPS = ('openwisp_users',)
+    EXTENDED_APPS = ('immunity_users',)
 
 
-4. Add ``openwisp_utils.staticfiles.DependencyFinder``
+4. Add ``immunity_utils.staticfiles.DependencyFinder``
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Add ``openwisp_utils.staticfiles.DependencyFinder`` to
+Add ``immunity_utils.staticfiles.DependencyFinder`` to
 ``STATICFILES_FINDERS`` in your ``settings.py``:
 
 .. code-block:: python
@@ -1391,13 +1391,13 @@ Add ``openwisp_utils.staticfiles.DependencyFinder`` to
     STATICFILES_FINDERS = [
         'django.contrib.staticfiles.finders.FileSystemFinder',
         'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-        'openwisp_utils.staticfiles.DependencyFinder',
+        'immunity_utils.staticfiles.DependencyFinder',
     ]
 
-5. Add ``openwisp_utils.loaders.DependencyLoader``
+5. Add ``immunity_utils.loaders.DependencyLoader``
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Add ``openwisp_utils.loaders.DependencyLoader`` to ``TEMPLATES``
+Add ``immunity_utils.loaders.DependencyLoader`` to ``TEMPLATES``
 before ``django.template.loaders.app_directories.Loader`` in your ``settings.py``:
 
 .. code-block:: python
@@ -1408,7 +1408,7 @@ before ``django.template.loaders.app_directories.Loader`` in your ``settings.py`
             'OPTIONS': {
                 'loaders': [
                     'django.template.loaders.filesystem.Loader',
-                    'openwisp_utils.loaders.DependencyLoader',
+                    'immunity_utils.loaders.DependencyLoader',
                     'django.template.loaders.app_directories.Loader',
                 ],
                 'context_processors': [
@@ -1426,10 +1426,10 @@ before ``django.template.loaders.app_directories.Loader`` in your ``settings.py`
 
 Please refer to the following files in the sample app of the test project:
 
-- `openwisp_users/__init__.py
-  <https://github.com/openwisp/openwisp-users/blob/master/tests/openwisp2/sample_users/__init__.py>`_
-- `openwisp_users/apps.py
-  <https://github.com/openwisp/openwisp-users/blob/master/tests/openwisp2/sample_users/apps.py>`_
+- `immunity_users/__init__.py
+  <https://github.com/edge-servers/immunity-users/blob/master/tests/immunity2/sample_users/__init__.py>`_
+- `immunity_users/apps.py
+  <https://github.com/edge-servers/immunity-users/blob/master/tests/immunity2/sample_users/apps.py>`_
 
 You have to replicate and adapt that code in your project.
 
@@ -1442,7 +1442,7 @@ the `"Applications" section in the django documentation
 
 For the purpose of showing an example, we added a simple ``social_security_number`` field in User model to the
 `models of the sample app in the test project
-<https://github.com/openwisp/openwisp-users/blob/master/tests/openwisp2/sample_users/models.py>`_.
+<https://github.com/edge-servers/immunity-users/blob/master/tests/immunity2/sample_users/models.py>`_.
 
 You can add fields in a similar way in your ``models.py`` file.
 
@@ -1463,7 +1463,7 @@ Once you have created the models, add the following to your ``settings.py``:
     OPENWISP_USERS_ORGANIZATION_MODEL = 'myusers.Organization'
     OPENWISP_USERS_ORGANIZATIONUSER_MODEL = 'myusers.OrganizationUser'
     OPENWISP_USERS_ORGANIZATIONOWNER_MODEL = 'myusers.OrganizationOwner'
-    # The following model is not used in OpenWISP yet
+    # The following model is not used in Immunity yet
     # but users are free to implement it in their projects if needed
     # for more information refer to the django-organizations docs:
     # https://django-organizations.readthedocs.io/
@@ -1481,21 +1481,21 @@ Create database migrations::
 Now, manually create a file ``0004_default_groups.py`` in the migrations directory
 just created by the ``makemigrations`` command and copy contents of
 the `sample_users/migrations/0004_default_groups.py
-<https://github.com/openwisp/openwisp-users/tree/master/tests/openwisp2/sample_users/migrations/0004_default_groups.py>`_.
+<https://github.com/edge-servers/immunity-users/tree/master/tests/immunity2/sample_users/migrations/0004_default_groups.py>`_.
 
 Then, run the migrations::
 
     ./manage.py migrate
 
-**Note**: the ``0004_default_groups`` is required because other OpenWISP modules
+**Note**: the ``0004_default_groups`` is required because other Immunity modules
 depend on it. If it's not created as documented here, the migrations of
-other OpenWISP modules will fail.
+other Immunity modules will fail.
 
 10. Create the admin
 ~~~~~~~~~~~~~~~~~~~~
 
 Refer to the `admin.py file of the sample app
-<https://github.com/openwisp/openwisp-users/blob/master/tests/openwisp2/sample_users/admin.py>`_.
+<https://github.com/edge-servers/immunity-users/blob/master/tests/immunity2/sample_users/admin.py>`_.
 
 To introduce changes to the admin, you can do it in two main ways which are described below.
 
@@ -1512,7 +1512,7 @@ For example:
 
 .. code-block:: python
 
-    from openwisp_users.admin import (
+    from immunity_users.admin import (
         UserAdmin,
         GroupAdmin,
         OrganizationAdmin,
@@ -1530,9 +1530,9 @@ usermodel_add_form
 When monkey patching the ``UserAdmin`` class to add add fields in the
 "Add user" form, you can use this function. In the example,
 `Social Security Number is added in the add form
-<https://github.com/openwisp/openwisp-users/tree/master/tests/openwisp2/sample_users/admin.py>`_:
+<https://github.com/edge-servers/immunity-users/tree/master/tests/immunity2/sample_users/admin.py>`_:
 
-.. image:: https://github.com/openwisp/openwisp-users/raw/docs/docs/images/add_user.png
+.. image:: https://github.com/edge-servers/immunity-users/raw/docs/docs/images/add_user.png
    :alt: Social Security Number in Add form
 
 usermodel_change_form
@@ -1542,9 +1542,9 @@ When monkey patching the ``UserAdmin`` class to add fields in the
 "Change user" form to change / modify user form's profile section,
 you can use this function. In the example, `Social Security Number
 is added in the change form
-<https://github.com/openwisp/openwisp-users/tree/master/tests/openwisp2/sample_users/admin.py>`_:
+<https://github.com/edge-servers/immunity-users/tree/master/tests/immunity2/sample_users/admin.py>`_:
 
-.. image:: https://github.com/openwisp/openwisp-users/raw/docs/docs/images/change_user.png
+.. image:: https://github.com/edge-servers/immunity-users/raw/docs/docs/images/change_user.png
    :alt: Social Security Number in Change form
 
 usermodel_list_and_search
@@ -1554,9 +1554,9 @@ When monkey patching the ``UserAdmin`` class you can use this
 function to make field searchable and add it to the user
 display list view. In the example,
 `Social Security Number is added in the changelist view
-<https://github.com/openwisp/openwisp-users/tree/master/tests/openwisp2/sample_users/admin.py>`_:
+<https://github.com/edge-servers/immunity-users/tree/master/tests/immunity2/sample_users/admin.py>`_:
 
-.. image:: https://github.com/openwisp/openwisp-users/raw/docs/docs/images/search_user.png
+.. image:: https://github.com/edge-servers/immunity-users/raw/docs/docs/images/search_user.png
    :alt: Users Change List View
 
 2. Inheriting admin classes
@@ -1568,7 +1568,7 @@ monkey patching, you can proceed as follows:
 .. code-block:: python
 
     from django.contrib import admin
-    from openwisp_users.admin import (
+    from immunity_users.admin import (
         UserAdmin as BaseUserAdmin,
         GroupAdmin as BaseGroupAdmin,
         OrganizationAdmin as BaseOrganizationAdmin,
@@ -1578,10 +1578,10 @@ monkey patching, you can proceed as follows:
     from swapper import load_model
     from django.contrib.auth import get_user_model
 
-    Group = load_model('openwisp_users', 'Group')
-    Organization = load_model('openwisp_users', 'Organization')
-    OrganizationOwner = load_model('openwisp_users', 'OrganizationOwner')
-    OrganizationUser = load_model('openwisp_users', 'OrganizationUser')
+    Group = load_model('immunity_users', 'Group')
+    Organization = load_model('immunity_users', 'Organization')
+    OrganizationOwner = load_model('immunity_users', 'OrganizationOwner')
+    OrganizationUser = load_model('immunity_users', 'OrganizationUser')
     User = get_user_model()
 
     admin.site.unregister(Group)
@@ -1619,7 +1619,7 @@ monkey patching, you can proceed as follows:
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Please refer to the `urls.py
-<https://github.com/openwisp/openwisp-users/tree/master/tests/openwisp2/urls.py>`_
+<https://github.com/edge-servers/immunity-users/tree/master/tests/immunity2/urls.py>`_
 file in the sample project.
 
 For more information about URL configuration in django, please refer to the
@@ -1632,13 +1632,13 @@ For more information about URL configuration in django, please refer to the
 When developing a custom application based on this module, it's a good
 idea to import and run the base tests too, so that you can be sure the
 changes you're introducing are not breaking some of the existing
-features of *openwisp-users*.
+features of *immunity-users*.
 
 In case you need to add breaking changes, you can overwrite the tests
 defined in the base classes to test your own behavior.
 
 See the `tests of the sample app
-<https://github.com/openwisp/openwisp-users/blob/master/tests/openwisp2/sample_users/tests.py>`_
+<https://github.com/edge-servers/immunity-users/blob/master/tests/immunity2/sample_users/tests.py>`_
 to find out how to do this.
 
 You can then run tests with::
@@ -1657,11 +1657,11 @@ The following steps are not required and are intended for more advanced customiz
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The API view classes can be extended into other django applications as well. Note
-that it is not required for extending *openwisp-users* to your app and this change
+that it is not required for extending *immunity-users* to your app and this change
 is required only if you plan to make changes to the API views.
 
 Create a view file as done in `API views.py
-<https://github.com/openwisp/openwisp-users/blob/master/tests/openwisp2/sample_users/views.py>`_.
+<https://github.com/edge-servers/immunity-users/blob/master/tests/immunity2/sample_users/views.py>`_.
 
 Remember to use these views in root URL configurations in point 11.
 
@@ -1672,20 +1672,20 @@ For more information about django views, please refer to the
 Contributing
 ------------
 
-Please refer to the `OpenWISP contributing guidelines
-<http://openwisp.io/docs/developer/contributing.html>`_.
+Please refer to the `Immunity contributing guidelines
+<http://immunity.io/docs/developer/contributing.html>`_.
 
 Support
 -------
 
-See `OpenWISP Support Channels <http://openwisp.org/support.html>`_.
+See `Immunity Support Channels <http://immunity.org/support.html>`_.
 
 Changelog
 ---------
 
-See `CHANGES <https://github.com/openwisp/openwisp-users/blob/master/CHANGES.rst>`_.
+See `CHANGES <https://github.com/edge-servers/immunity-users/blob/master/CHANGES.rst>`_.
 
 License
 -------
 
-See `LICENSE <https://github.com/openwisp/openwisp-users/blob/master/LICENSE>`_.
+See `LICENSE <https://github.com/edge-servers/immunity-users/blob/master/LICENSE>`_.

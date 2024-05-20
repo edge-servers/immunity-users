@@ -2,7 +2,7 @@ from django.contrib.auth.models import Permission
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from django.db.models import Q
 from django.urls import reverse
-from openwisp_utils.test_selenium_mixins import SeleniumTestMixin
+from immunity_utils.test_selenium_mixins import SeleniumTestMixin
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.select import Select
@@ -11,7 +11,7 @@ from swapper import load_model
 
 from .mixins import TestMultitenancyMixin
 
-Organization = load_model('openwisp_users', 'Organization')
+Organization = load_model('immunity_users', 'Organization')
 
 
 class TestOrganizationAutocompleteField(

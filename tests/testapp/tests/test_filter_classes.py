@@ -1,16 +1,16 @@
 from django.contrib.auth import get_user_model
 from django.test import TestCase
 from django.urls import reverse
-from openwisp_utils.tests import AssertNumQueriesSubTestMixin
+from immunity_utils.tests import AssertNumQueriesSubTestMixin
 from swapper import load_model
 
-from openwisp_users.api.throttling import AuthRateThrottle
+from immunity_users.api.throttling import AuthRateThrottle
 
 from ..models import Book, Library, Shelf, Tag
 from .mixins import TestMultitenancyMixin
 
-OrganizationUser = load_model('openwisp_users', 'OrganizationUser')
-OrganizationOwner = load_model('openwisp_users', 'OrganizationOwner')
+OrganizationUser = load_model('immunity_users', 'OrganizationUser')
+OrganizationOwner = load_model('immunity_users', 'OrganizationOwner')
 User = get_user_model()
 
 

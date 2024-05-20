@@ -8,7 +8,7 @@ from organizations.abstract import (
     AbstractOrganizationUser,
 )
 
-from openwisp_users.base.models import (
+from immunity_users.base.models import (
     AbstractUser,
     BaseGroup,
     BaseOrganization,

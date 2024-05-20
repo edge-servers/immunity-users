@@ -5,18 +5,18 @@ from django.test import TestCase
 from django.urls import reverse
 from swapper import load_model
 
-from openwisp_users.tests.utils import TestOrganizationMixin
+from immunity_users.tests.utils import TestOrganizationMixin
 
-Organization = load_model('openwisp_users', 'Organization')
-OrganizationUser = load_model('openwisp_users', 'OrganizationUser')
-OrganizationOwner = load_model('openwisp_users', 'OrganizationOwner')
+Organization = load_model('immunity_users', 'Organization')
+OrganizationUser = load_model('immunity_users', 'OrganizationUser')
+OrganizationOwner = load_model('immunity_users', 'OrganizationOwner')
 User = get_user_model()
-Group = load_model('openwisp_users', 'Group')
+Group = load_model('immunity_users', 'Group')
 
 
 class TestUsersAdmin(TestOrganizationMixin, TestCase):
     app_label = (
-        'openwisp_users' if not os.environ.get('SAMPLE_APP', False) else 'sample_users'
+        'immunity_users' if not os.environ.get('SAMPLE_APP', False) else 'sample_users'
     )
 
     def test_group_reversion(self):

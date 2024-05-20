@@ -1,23 +1,23 @@
 #!/bin/bash
 set -e
 
-jshint ./openwisp_users/static/openwisp-users/js/*.js
+jshint ./immunity_users/static/immunity-users/js/*.js
 
 echo ''
 echo 'Compiling translations'
-cd openwisp_users
+cd immunity_users
 django-admin compilemessages
 cd ..
 
-openwisp-qa-check \
+immunity-qa-check \
       --migrations-to-ignore 2 \
-      --migration-path './openwisp_users/migrations' \
-      --migration-module openwisp_users
+      --migration-path './immunity_users/migrations' \
+      --migration-module immunity_users
 
 echo ''
 echo 'Running checks for testapp'
 
-openwisp-qa-check \
+immunity-qa-check \
       --skip-isort \
       --skip-flake8 \
       --skip-black \
@@ -30,12 +30,12 @@ openwisp-qa-check \
 echo ''
 echo 'Running checks for SAMPLE_APP'
 
-SAMPLE_APP=1 openwisp-qa-check \
+SAMPLE_APP=1 immunity-qa-check \
       --skip-isort \
       --skip-flake8 \
       --skip-black \
       --skip-checkmigrations \
       --skip-checkendline \
       --skip-checkcommit \
-      --migration-path './tests/openwisp2/sample_ipam/migrations' \
+      --migration-path './tests/immunity2/sample_ipam/migrations' \
       --migration-module sample_users

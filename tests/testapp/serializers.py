@@ -1,6 +1,6 @@
-from openwisp_utils.api.serializers import ValidatedModelSerializer
+from immunity_utils.api.serializers import ValidatedModelSerializer
 
-from openwisp_users.api.mixins import (
+from immunity_users.api.mixins import (
     FilterSerializerByOrgManaged,
     FilterSerializerByOrgMembership,
     FilterSerializerByOrgOwned,

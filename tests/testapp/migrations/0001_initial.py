@@ -10,7 +10,7 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [swapper.dependency('openwisp_users', 'Organization')]
+    dependencies = [swapper.dependency('immunity_users', 'Organization')]
 
     operations = [
         migrations.CreateModel(
@@ -30,7 +30,7 @@ class Migration(migrations.Migration):
                     'organization',
                     models.ForeignKey(
                         on_delete=django.db.models.deletion.CASCADE,
-                        to=swapper.get_model_name('openwisp_users', 'Organization'),
+                        to=swapper.get_model_name('immunity_users', 'Organization'),
                         verbose_name='organization',
                     ),
                 ),
@@ -56,7 +56,7 @@ class Migration(migrations.Migration):
                         blank=True,
                         null=True,
                         on_delete=django.db.models.deletion.CASCADE,
-                        to=swapper.get_model_name('openwisp_users', 'Organization'),
+                        to=swapper.get_model_name('immunity_users', 'Organization'),
                         verbose_name='organization',
                     ),
                 ),

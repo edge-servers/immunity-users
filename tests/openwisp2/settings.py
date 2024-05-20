@@ -15,9 +15,9 @@ ALLOWED_HOSTS = ['*']
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'openwisp-users.db'
+        'NAME': 'immunity-users.db'
         if not SAMPLE_APP
-        else 'openwisp-users-SAMPLE_APP.db',
+        else 'immunity-users-SAMPLE_APP.db',
     }
 }
 
@@ -30,15 +30,15 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # overrides some templates in django-allauth
-    'openwisp_users.accounts',
+    'immunity_users.accounts',
     'django_extensions',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
-    'openwisp_users',
-    # openwisp2 admin theme
+    'immunity_users',
+    # immunity2 admin theme
     # (must be loaded here)
-    'openwisp_utils.admin_theme',
+    'immunity_utils.admin_theme',
     # must come before the django admin
     # to override the admin login page
     'rest_framework',
@@ -52,13 +52,13 @@ INSTALLED_APPS = [
     'django_filters',
 ]
 
-AUTH_USER_MODEL = 'openwisp_users.User'
+AUTH_USER_MODEL = 'immunity_users.User'
 SITE_ID = 1
 
 STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-    'openwisp_utils.staticfiles.DependencyFinder',
+    'immunity_utils.staticfiles.DependencyFinder',
 ]
 
 MIDDLEWARE = [
@@ -69,14 +69,14 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'openwisp_users.middleware.PasswordExpirationMiddleware',
+    'immunity_users.middleware.PasswordExpirationMiddleware',
 ]
 
 AUTH_PASSWORD_VALIDATORS = [
-    {'NAME': 'openwisp_users.password_validation.PasswordReuseValidator'}
+    {'NAME': 'immunity_users.password_validation.PasswordReuseValidator'}
 ]
 
-ROOT_URLCONF = 'openwisp2.urls'
+ROOT_URLCONF = 'immunity2.urls'
 
 TIME_ZONE = 'Europe/Rome'
 LANGUAGE_CODE = 'en-gb'
@@ -89,12 +89,12 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            os.path.join(os.path.dirname(BASE_DIR), 'openwisp_users', 'templates')
+            os.path.join(os.path.dirname(BASE_DIR), 'immunity_users', 'templates')
         ],
         'OPTIONS': {
             'loaders': [
                 'django.template.loaders.filesystem.Loader',
-                'openwisp_utils.loaders.DependencyLoader',
+                'immunity_utils.loaders.DependencyLoader',
                 'django.template.loaders.app_directories.Loader',
             ],
             'context_processors': [
@@ -102,14 +102,14 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'openwisp_utils.admin_theme.context_processor.menu_groups',
+                'immunity_utils.admin_theme.context_processor.menu_groups',
             ],
         },
     }
 ]
 
 AUTHENTICATION_BACKENDS = [
-    'openwisp_users.backends.UsersAuthenticationBackend',
+    'immunity_users.backends.UsersAuthenticationBackend',
 ]
 
 if not TESTING and SHELL:
@@ -151,7 +151,7 @@ else:
 
 CELERY_BEAT_SCHEDULE = {
     'password_expiry_email': {
-        'task': 'openwisp_users.tasks.password_expiration_email',
+        'task': 'immunity_users.tasks.password_expiration_email',
         'schedule': crontab(hour=1, minute=0),
     },
 }
@@ -178,7 +178,7 @@ else:
     CACHES = {
         'default': {
             'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
-            'LOCATION': 'openwisp-users',
+            'LOCATION': 'immunity-users',
         }
     }
 
@@ -186,10 +186,10 @@ SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
 SESSION_CACHE_ALIAS = 'default'
 
 if SAMPLE_APP:
-    users_index = INSTALLED_APPS.index('openwisp_users')
-    INSTALLED_APPS.insert(users_index, 'openwisp2.sample_users')
-    INSTALLED_APPS.remove('openwisp_users')
-    EXTENDED_APPS = ['openwisp_users']
+    users_index = INSTALLED_APPS.index('immunity_users')
+    INSTALLED_APPS.insert(users_index, 'immunity2.sample_users')
+    INSTALLED_APPS.remove('immunity_users')
+    EXTENDED_APPS = ['immunity_users']
     AUTH_USER_MODEL = 'sample_users.User'
     OPENWISP_USERS_GROUP_MODEL = 'sample_users.Group'
     OPENWISP_USERS_ORGANIZATION_MODEL = 'sample_users.Organization'

@@ -4,7 +4,7 @@ import sys
 
 from setuptools import find_packages, setup
 
-from openwisp_users import get_version
+from immunity_users import get_version
 
 
 def get_install_requires():
@@ -40,17 +40,17 @@ if sys.argv[-1] == 'publish':
 
 
 setup(
-    name='openwisp-users',
+    name='immunity-users',
     version=get_version(),
     license='BSD',
     author='Federico Capoano',
-    author_email='support@openwisp.io',
-    description='Provides basic multi-tenancy features for OpenWISP (using the Django web-framework)',
+    author_email='support@immunity.io',
+    description='Provides basic multi-tenancy features for Immunity (using the Django web-framework)',
     long_description=open('README.rst').read(),
-    url='http://openwisp.org',
-    download_url='https://github.com/openwisp/openwisp-users/releases',
+    url='http://immunity.org',
+    download_url='https://github.com/edge-servers/immunity-users/releases',
     platforms=['Platform Independent'],
-    keywords=['openwisp', 'django', 'organizations', 'users'],
+    keywords=['immunity', 'django', 'organizations', 'users'],
     packages=find_packages(exclude=['tests*', 'docs*']),
     include_package_data=True,
     zip_safe=False,
