@@ -191,11 +191,16 @@ if SAMPLE_APP:
     INSTALLED_APPS.remove('immunity_users')
     EXTENDED_APPS = ['immunity_users']
     AUTH_USER_MODEL = 'sample_users.User'
-    OPENWISP_USERS_GROUP_MODEL = 'sample_users.Group'
-    OPENWISP_USERS_ORGANIZATION_MODEL = 'sample_users.Organization'
-    OPENWISP_USERS_ORGANIZATIONUSER_MODEL = 'sample_users.OrganizationUser'
-    OPENWISP_USERS_ORGANIZATIONOWNER_MODEL = 'sample_users.OrganizationOwner'
-    OPENWISP_USERS_ORGANIZATIONINVITATION_MODEL = 'sample_users.OrganizationInvitation'
+    IMMUNITY
+_USERS_GROUP_MODEL = 'sample_users.Group'
+    IMMUNITY
+_USERS_ORGANIZATION_MODEL = 'sample_users.Organization'
+    IMMUNITY
+_USERS_ORGANIZATIONUSER_MODEL = 'sample_users.OrganizationUser'
+    IMMUNITY
+_USERS_ORGANIZATIONOWNER_MODEL = 'sample_users.OrganizationOwner'
+    IMMUNITY
+_USERS_ORGANIZATIONINVITATION_MODEL = 'sample_users.OrganizationInvitation'
 
 if os.environ.get('NO_SOCIAL_APP', False):
     INSTALLED_APPS.remove('allauth.socialaccount')

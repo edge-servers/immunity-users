@@ -8,7 +8,8 @@ from django.core.exceptions import ObjectDoesNotExist
 def set_default_organization_uuid(apps, schema_editor):
     """
     Get or create a default organization then
-    set settings._OPENWISP_DEFAULT_ORG_UUID
+    set settings._IMMUNITY
+_DEFAULT_ORG_UUID
     """
     org_model = swapper.get_model_name('immunity_users', 'organization')
     model_app_label = swapper.split(org_model)[0]
@@ -25,10 +26,12 @@ def set_default_organization_uuid(apps, schema_editor):
         default_organization.full_clean()
         default_organization.save()
 
-    # settings._OPENWISP_DEFAULT_ORG_UUID is used in
+    # settings._IMMUNITY
+_DEFAULT_ORG_UUID is used in
     # immunity-radius.migrations, it helps to enable
     # users to migrate from freeradius 3
-    settings._OPENWISP_DEFAULT_ORG_UUID = default_organization.pk
+    settings._IMMUNITY
+_DEFAULT_ORG_UUID = default_organization.pk
 
 
 def create_default_groups(apps, schema_editor):

@@ -230,7 +230,8 @@ Run tests with:
 Settings
 --------
 
-``OPENWISP_ORGANIZATION_USER_ADMIN``
+``IMMUNITY
+_ORGANIZATION_USER_ADMIN``
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 +--------------+------------------+
@@ -242,7 +243,8 @@ Settings
 Indicates whether the admin section for managing ``OrganizationUser`` items
 is enabled or not.
 
-``OPENWISP_ORGANIZATION_OWNER_ADMIN``
+``IMMUNITY
+_ORGANIZATION_OWNER_ADMIN``
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 +--------------+------------------+
@@ -256,7 +258,8 @@ is enabled or not.
 
 Find out more information about `organization owners <#organization-owners>`_.
 
-``OPENWISP_USERS_AUTH_API``
+``IMMUNITY
+_USERS_AUTH_API``
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 +--------------+--------------+
@@ -267,7 +270,8 @@ Find out more information about `organization owners <#organization-owners>`_.
 
 Indicates whether the `REST API <#rest-api>`_ is enabled or not.
 
-``OPENWISP_USERS_AUTH_THROTTLE_RATE``
+``IMMUNITY
+_USERS_AUTH_THROTTLE_RATE``
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 +--------------+--------------+
@@ -284,7 +288,8 @@ also count valid requests for rate limiting. For more information,
 check Django-rest-framework
 `throttling guide <https://www.django-rest-framework.org/api-guide/throttling/>`_.
 
-``OPENWISP_USERS_AUTH_BACKEND_AUTO_PREFIXES``
+``IMMUNITY
+_USERS_AUTH_BACKEND_AUTO_PREFIXES``
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 +--------------+--------------+
@@ -304,7 +309,8 @@ is a valid number of not.
 This allows users to log in by using only the national phone number,
 without having to specify the international prefix.
 
-``OPENWISP_USERS_EXPORT_USERS_COMMAND_CONFIG``
+``IMMUNITY
+_USERS_EXPORT_USERS_COMMAND_CONFIG``
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 +--------------+--------------------------+
@@ -339,7 +345,8 @@ command.
 
 The ``select_related`` property can be used to optimize the database query.
 
-``OPENWISP_USERS_USER_PASSWORD_EXPIRATION``
+``IMMUNITY
+_USERS_USER_PASSWORD_EXPIRATION``
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 +--------------+-------------+
@@ -355,7 +362,8 @@ change their passwords.
 If set to ``0``, this feature is disabled, and users are not
 required to change their passwords.
 
-``OPENWISP_USERS_STAFF_USER_PASSWORD_EXPIRATION``
+``IMMUNITY
+_USERS_STAFF_USER_PASSWORD_EXPIRATION``
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 +--------------+-------------+
@@ -364,14 +372,16 @@ required to change their passwords.
 | **default**: | ``0``       |
 +--------------+-------------+
 
-Similar to `OPENWISP_USERS_USER_PASSWORD_EXPIRATION <#immunity-users-user-password-expiration>`_,
+Similar to `IMMUNITY
+_USERS_USER_PASSWORD_EXPIRATION <#immunity-users-user-password-expiration>`_,
 but for **staff users**.
 
 REST API
 --------
 
 To enable the API the setting
-`OPENWISP_USERS_AUTH_API <#immunity-users-auth-api>`_
+`IMMUNITY
+_USERS_AUTH_API <#immunity-users-auth-api>`_
 must be set to ``True``.
 
 Live documentation
@@ -817,7 +827,8 @@ that even if the user adds characters like spaces, dots or dashes, the number
 will be recognized anyway.
 
 When parsing phone numbers, the
-`OPENWISP_USERS_AUTH_BACKEND_AUTO_PREFIXES
+`IMMUNITY
+_USERS_AUTH_BACKEND_AUTO_PREFIXES
 <#immunity_users_auth_backend_auto_prefixes>`_
 setting allows to specify a list of international prefixes that can
 be prepended to the username string automatically in order to allow
@@ -861,8 +872,10 @@ Middlewares
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 When password expiration feature is on
-(see `OPENWISP_USERS_USER_PASSWORD_EXPIRATION <#immunity-users-user-password-expiration>`_
-and `OPENWISP_USERS_STAFF_USER_PASSWORD_EXPIRATION <#immunity-users-staff-user-password-expiration>`_),
+(see `IMMUNITY
+_USERS_USER_PASSWORD_EXPIRATION <#immunity-users-user-password-expiration>`_
+and `IMMUNITY
+_USERS_STAFF_USER_PASSWORD_EXPIRATION <#immunity-users-staff-user-password-expiration>`_),
 this middleware confines the user to the *password change view* until they change their password.
 
 This middleware should come after ``AuthenticationMiddleware`` and ``MessageMiddleware``, as following:
@@ -1279,7 +1292,8 @@ Example usage:
     ./manage.py export_users --exclude-fields birth_date,location --filename users.csv
 
 For advance customizations (e.g. adding fields for export), you can use the
-`OPENWISP_USERS_EXPORT_USERS_COMMAND_CONFIG <#immunity_users_export_users_command_config>`_
+`IMMUNITY
+_USERS_EXPORT_USERS_COMMAND_CONFIG <#immunity_users_export_users_command_config>`_
 setting.
 
 ProtectedAPIMixin
@@ -1459,15 +1473,20 @@ Once you have created the models, add the following to your ``settings.py``:
 
     # Setting models for swapper module
     AUTH_USER_MODEL = 'myusers.User'
-    OPENWISP_USERS_GROUP_MODEL = 'myusers.Group'
-    OPENWISP_USERS_ORGANIZATION_MODEL = 'myusers.Organization'
-    OPENWISP_USERS_ORGANIZATIONUSER_MODEL = 'myusers.OrganizationUser'
-    OPENWISP_USERS_ORGANIZATIONOWNER_MODEL = 'myusers.OrganizationOwner'
+    IMMUNITY
+_USERS_GROUP_MODEL = 'myusers.Group'
+    IMMUNITY
+_USERS_ORGANIZATION_MODEL = 'myusers.Organization'
+    IMMUNITY
+_USERS_ORGANIZATIONUSER_MODEL = 'myusers.OrganizationUser'
+    IMMUNITY
+_USERS_ORGANIZATIONOWNER_MODEL = 'myusers.OrganizationOwner'
     # The following model is not used in Immunity yet
     # but users are free to implement it in their projects if needed
     # for more information refer to the django-organizations docs:
     # https://django-organizations.readthedocs.io/
-    OPENWISP_USERS_ORGANIZATIONINVITATION_MODEL = 'myusers.OrganizationInvitation'
+    IMMUNITY
+_USERS_ORGANIZATIONINVITATION_MODEL = 'myusers.OrganizationInvitation'
 
 Substitute ``myusers`` with the name you chose in step 1.
 

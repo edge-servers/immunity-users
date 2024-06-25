@@ -206,7 +206,9 @@ Features
 - [admin] Added support for `organization owners <https://github.com/edge-servers/immunity-users#organization-owners>`_
 - [admin] Added default owner to each organization
 - [api] Added `ObtainTokenView REST API endpoint <https://github.com/edge-servers/immunity-users#obtain-authentication-token>`_ for bearer authentication
-- [api] Added `OPENWISP_USERS_AUTH_API <https://github.com/edge-servers/immunity-users#immunity-users-auth-api>`_ and `OPENWISP_USERS_AUTH_THROTTLE_RATE <https://github.com/edge-servers/immunity-users#immunity-users-auth-throttle-rate>`_ settings
+- [api] Added `IMMUNITY
+_USERS_AUTH_API <https://github.com/edge-servers/immunity-users#immunity-users-auth-api>`_ and `IMMUNITY
+_USERS_AUTH_THROTTLE_RATE <https://github.com/edge-servers/immunity-users#immunity-users-auth-throttle-rate>`_ settings
 - [api] Added `Django REST Framework permission classes <https://github.com/edge-servers/immunity-users#django-rest-framework-permission-classes>`_
 - [models] Added `Organization membership helpers <https://github.com/edge-servers/immunity-users#organization-membership-helpers>`_
 - [models] Added `User permission helpers <https://github.com/edge-servers/immunity-users#permissions-helpers>`_
