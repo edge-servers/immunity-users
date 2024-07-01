@@ -46,6 +46,7 @@ setup(
     author='Federico Capoano',
     author_email='support@immunity.io',
     description='Provides basic multi-tenancy features for Immunity (using the Django web-framework)',
+    long_description_content_type='text/markdown',
     long_description=open('README.rst').read(),
     url='http://immunity.org',
     download_url='https://github.com/edge-servers/immunity-users/releases',
